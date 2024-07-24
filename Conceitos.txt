@@ -1,0 +1,15 @@
+Redux: É uma biblioteca para gerenciar o estado global de uma aplicação JavaScript.
+
+Reducer: Um reducer é uma função pura que recebe o estado atual e uma ação como argumentos e retorna um novo estado. O reducer usa a propriedade type da ação para determinar como deve atualizar o estado, e a propriedade payload da ação contém os dados necessários para a atualização.
+
+Actions: São objetos que descrevem uma mudança a ser feita no estado. Cada action tem uma propriedade type que indica o tipo de ação a ser realizada, e uma propriedade payload que contém os dados necessários para a atualização.
+
+Dispatch: É uma função fornecida pelo Redux que envia uma ação ao store. Quando uma ação é despachada, o Redux chama todos os reducers com a ação atual, permitindo que cada reducer determine como a ação deve alterar o estado.
+
+Aqui está uma reformulação mais precisa dos seus conceitos:
+
+Redux: É uma biblioteca para gerenciar o estado global de uma aplicação JavaScript, facilitando o gerenciamento de estados compartilhados entre componentes.
+
+Reducer: É uma função pura que recebe o estado atual e uma ação, retornando um novo estado. Ele usa a propriedade type da ação para determinar a atualização e a propriedade payload para os dados necessários.
+
+Actions: São objetos que descrevem uma mudança no estado, contendo uma propriedade type que define o tipo de atualização e uma propriedade payload que fornece os dados necessários para a atualização.

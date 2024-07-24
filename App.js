@@ -1,20 +1,96 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useReducer } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  TextInput,
+} from "react-native";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "setText":
+      return { ...state, text: action.payload };
+    case "toogleRedBox":
+      return { ...state, showRedBox: action.payload };
+    default:
+      return state;
+  }
 }
+
+const initialValue = {
+  text: "",
+  showRedBox: false,
+};
+
+const App = () => {
+  let typedText;
+
+  const [state, dispatch] = useReducer(reducer, initialValue);
+
+  return (
+    <>
+      <Text style={styles.title}>useReducer Example</Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>{state.text}</Text>
+        {state.showRedBox && <View style={styles.redBox} />}
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => {
+            // setText(text)
+            typedText = text;
+          }}
+        />
+        <Button
+          title="Set text"
+          onPress={() =>
+            dispatch({ type: "setText", payload: typedText })
+          }
+        />
+        <Button
+          title={state.showRedBox ? "Hide Red Box" : "Show Red Box"}
+          onPress={() =>
+            dispatch({
+              type: "toogleRedBox",
+              payload: !state.showRedBox,
+            })
+          }
+        />
+      </View>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    alignSelf: "center",
+    marginTop: 70,
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  redBox: {
+    width: 200,
+    height: 200,
+    backgroundColor: "red",
+    alignSelf: "center",
+  },
+  input: {
+    backgroundColor: "#e7e7e7",
+    padding: 10,
+    borderRadius: 10,
+    fontSize: 25,
+    marginVertical: 10,
+    width: "80%",
   },
 });
+
+export default App;
